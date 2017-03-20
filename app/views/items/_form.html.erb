@@ -1,0 +1,9 @@
+<%= simple_form_for @item do |f| %>
+<div class="input-field col s6">
+  <%= f.input :title, label: "Item" %>
+</div>
+<div class="input-field col s6">
+  <%= f.input :description, label: "Description" %>
+</div>
+  <%= f.button :submit %>
+<% end %>
