@@ -1,17 +1,19 @@
   <nav>
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Lister</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><%= link_to "Checklist", root_path %>></li>
-        <li><%= link_to "Sign Up", new_user_registration_path %></li>
-        <% if current_user.present? %>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-        <li><%= link_to "Log In", new_user_session_path %></li>
-        <% end %>
-        <% if user_signed_in? %>
-        <li><%= link_to "New Item", new_item_path %></li>
-        <% end %>
-      </ul>
+      <div class="container">
+        <a href="<% link_to root_path %>" class="brand-logo">Lister</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><%= link_to "Checklist", root_path %></li>
+          <% if user_signed_in? %>
+          <li><%= link_to "New Item", new_item_path %></li>
+          <% end %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <% if current_user.present? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Log In", new_user_session_path %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </nav>
