@@ -1,12 +1,14 @@
+<% if user_signed_in? %>
 <div class="row">
   <div class="col s4">
     <!-- This is for the new-item side-bar-->
+    <% if user_signed_in? %>
     <h5>Add Item</h5>
     <%= render 'form' %>
+    <% end %>
   </div>
 
   <div class="col s8">
-    <% if user_signed_in? %>
       <% @items.each do |item| %>
         <% if item.completed? %>
           <div class="row">
@@ -15,9 +17,9 @@
                 <div class="card-content">
                 <span class="card-title" style="opacity: 0.5;"><strike><%= link_to item.title, item %></strike></span>
                 <p style="opacity:0.5;"><%= item.description %></p>
-                <p style="opacity:0.5;">Completed <%= time_ago_in_words(item.completed_at) %> ago </p>
               </div>
               <div class="card-action">
+              <p style="opacity:0.5;">Completed <%= time_ago_in_words(item.completed_at) %> ago </p>
               <%= link_to complete_item_path(item), method: :patch do %>
                 <i class="fa fa-lg fa-check"></i>
               <% end %>
@@ -37,9 +39,9 @@
               <div class="card-content">
                 <span class="card-title"><%= link_to item.title, item %></span>
                 <p><%= item.description %></p>
-                <p>Created <%= time_ago_in_words(item.created_at) %> ago </p>
               </div>
-              <div class="card-action">
+              <div class="card-action blue-grey lighten-5">
+                <p>Created <%= time_ago_in_words(item.created_at) %> ago </p>
                 <%= link_to complete_item_path(item), method: :patch do %>
                   <i class="fa fa-lg fa-check"></i>
                 <% end %>
@@ -51,10 +53,9 @@
           </div>
         </div>
       <% end %>
-    <% end %>
+    <% end %>  
   </div>
 </div>
-
 
 <% else %>
   <%= render 'partials/static_landing_page' %>
